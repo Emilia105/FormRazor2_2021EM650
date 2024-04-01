@@ -1,0 +1,108 @@
+﻿<h1>Mantenimiento de Equipos</h1>
+<br/>
+<form asp-action="CrearEquipos">
+    @*Inicio del formulario*@
+    <div class="container">
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblNombreEquipo", "Nombre")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("Nombre", "", new{@class="form-control"})
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblDescripcion", "Descripción")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextArea("Descripcion", "", new { @class = "form-control", @placeholder="Ingrese la descripción" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblTipoEquipo", "Tipo de Equipo")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("TipoEquipoId", ViewData["listaDeTipos"] as SelectList, "Seleccione un Tipo", new{@class="form-control"})
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblMarca", "Marca")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("MarcaId", ViewData["listaDeMarcas"] as SelectList, "Seleccione una Marca", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblModelo", "Modelo")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("Modelo", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblAñoCompra", "Año de Compra")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("AnioCompra", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("Costo", "Costo")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("Costo", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblVidaUtil", "Vida Útil")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("VidaUtil", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2">
+                @Html.Label("lblEstadoEquipo", "Estado de Equipo")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("EstadoEquipoId", ViewData["listaDeEstados"] as SelectList, "Seleccione un Estado", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+                
+            </div>
+            <div class="col-sm-4">
+                @Html.CheckBox("Inactivo") Inactivo
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+                <input type="submit" class="btn btn-outline-dark" value="Guardar"></input>
+            </div>
+        </div>
+    </div>
+
+    <table class = "table table-striped">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Descripción</th>
+                <th>Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in (IEnumerable<dynamic>)ViewData["listadoEquipos"])
+            {
+                <tr>
+                    <td>@equipo.nombre</td>
+                    <td>@equipo.descripcion</td>
+                    <td>@equipo.marca_nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @*Fin del formulario*@
+</form>
